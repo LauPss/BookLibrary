@@ -9,7 +9,7 @@ function Book(title, author, year, pages, read) {
 const bookSample1 = new Book("Dubliners", "J.Joyce", "1914", "284", "Read");
 const bookSample2 = new Book ("The Metamorphosis", "F.Kafka", "1915", "297", "Not read");
 const bookSample3 = new Book("The Colour of Magic", "T.Pratchett", "1983", "287", "Not read");
-const myLibrary = [bookSample1, bookSample2, bookSample3];
+const myLibrary = [];
 
 const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
@@ -19,6 +19,14 @@ const readCheckbox = document.getElementById("read");
 let readStatus = "";
 
 const table = document.getElementById("table");
+
+const checkStorage = () => {
+	if(!localStorage.getItem("storedArray")) {
+		myLibrary = [bookSample1, bookSample2, bookSample3];
+	} else {
+		loadStorage();
+	}
+}
 
 const addBookToLibrary = () => {
 	const newBook = new Book(titleInput.value, authorInput.value, yearInput.value, pagesInput.value, readStatus);
@@ -39,6 +47,7 @@ addButton.addEventListener("click", (e) => {
 	clearTable();
 	readStatus = readCheckbox.checked ? "Read" : "Not read" ;
 	addBookToLibrary();
+	createStorageArray();
 	displayTable();
 	clearFields();
 });
@@ -68,11 +77,13 @@ const displayTable = () => {
 		
 		changeStatusBtn.addEventListener("click", (e) => {
 			myLibrary[row.dataset.indexNumber].read = (myLibrary[row.dataset.indexNumber].read === "Read") ? "Not read" : "Read" ;
+			createStorageArray();
 			displayTable();
 		});
 		
 		removeButton.addEventListener("click", (e) => {
 			myLibrary.splice(row.dataset.indexNumber, 1);
+			createStorageArray();
 			displayTable();
 		});
 		
@@ -89,4 +100,30 @@ const displayTable = () => {
 	});
 }
 
+const createStorageArray = () => {
+	let storArray = [];
+	myLibrary.forEach(Book => {
+		let objString = `${Book.title} - ${Book.author} - ${Book.year} - ${Book.pages} - ${Book.read}`;
+		storArray.push(objString);
+	});
+	let storageString = storArray.join("|");
+	localStorage.setItem("storedArray", storageString);
+}
+
+function loadStorage() {
+	let storageString = localStorage.getItem("storedArray");
+	let storArray = storageString.split("|");
+	storArray.forEach(objString => {
+		let storedBook = new Book;
+		const valueArray = objString.split(" - ");
+		storedBook.title = valueArray[0];
+		storedBook.author = valueArray[1];
+		storedBook.year = valueArray[2];
+		storedBook.pages = valueArray[3];
+		storedBook.read = valueArray[4];
+		myLibrary.push(storedBook);
+	});
+}
+
+checkStorage();
 displayTable();
