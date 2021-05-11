@@ -22,7 +22,8 @@ const table = document.getElementById("table");
 
 const checkStorage = () => {
 	if(!localStorage.getItem("storedArray")) {
-		myLibrary = [bookSample1, bookSample2, bookSample3];
+		myLibrary.push(bookSample1, bookSample2, bookSample3);
+		console.log("meow");
 	} else {
 		loadStorage();
 	}
