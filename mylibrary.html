@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<title>My Library</title>
+<meta name="generator" content="Geany 1.35" />
+<link rel="stylesheet" href="mylibrary.css">
+</head>
+
+<body>
+	<div id="container">
+		<h1>My Library</h1>
+		<fieldset>
+			<legend>Add a new book to the library!</legend>
+				<form>
+					<label for="Title">Title: </label><input type="text" id="title" name="Title" placeholder="Insert Here"><br>
+					<label for="Author">Author: </label><input type="text" id="author" name="Author" placeholder="Insert Here">
+					<label for="Year">Year: </label><input type="number" id="year" name="Year" min="1" placeholder="2021"><br>
+					<label for="Pages">Pages: </label><input type="number" id="pages" name="Pages" min="1" placeholder="1">
+					<label for="Read">Have I read it? </label><input type="checkbox" id="read" name="Read" value="read">
+					<input type="button" id= "addButton" value="Add this book">
+				</form> 
+		</fieldset>
+		<table id="table">
+			<tr>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Year</th>
+				<th>Pages</th>
+				<th>Status</th>
+				<th>Actions</th>
+			</tr>
+		</table>
+	</div>
+	<script src="mylibrary.js"></script>
+</body>
+
+</html>
