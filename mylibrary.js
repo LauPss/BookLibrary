@@ -45,12 +45,16 @@ const clearFields = () => {
 
 const addButton = document.getElementById("addButton");
 addButton.addEventListener("click", (e) => {
-	clearTable();
-	readStatus = readCheckbox.checked ? "Read" : "Not read" ;
-	addBookToLibrary();
-	createStorageArray();
-	displayTable();
-	clearFields();
+	if (titleInput.checkValidity() && authorInput.checkValidity() && yearInput.checkValidity() && pagesInput.checkValidity()) {
+		clearTable();
+		readStatus = readCheckbox.checked ? "Read" : "Not read" ;
+		addBookToLibrary();
+		createStorageArray();
+		displayTable();
+		clearFields();
+	} else {
+		alert("Please, compile all fields with appropriate values.");
+	}
 });
 
 const clearTable = () => {

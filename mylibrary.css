@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap');
 
 body {
 	background-color: #4e2000;
@@ -14,7 +13,7 @@ div#container {
 
 #container {
 	background-color: tan;
-	font-family: "Goudy Bookletter 1911", serif;
+	font-family: serif;
 	letter-spacing: 1px;
 	margin: 0 auto;
 	height: 100vh;
@@ -59,7 +58,7 @@ legend {
 input {
 	background-color: #7f5533;
 	border: 1px inset #4e2000;
-	font-family: "Goudy Bookletter 1911", serif;
+	font-family: serif;
 	font-size: 11pt;
 	letter-spacing: 1px;
 	margin-top: 5px;
